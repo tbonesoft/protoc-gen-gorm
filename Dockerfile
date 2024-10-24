@@ -1,9 +1,10 @@
-FROM golang:1.16.5 AS builder
+FROM golang:1.22 AS builder
 
 LABEL stage=server-intermediate
 
 WORKDIR /go/src/github.com/tbonesoft/protoc-gen-gorm
 COPY . .
+RUN go mod download github.com/google/uuid
 RUN CGO_ENABLED=0 GOOS=linux go build -o /out/usr/bin/protoc-gen-gorm main.go
 
 FROM infoblox/atlas-gentool:v25.1-6-g1ac2da0 AS runner
@@ -13,6 +14,9 @@ COPY --from=builder /go/src/github.com/tbonesoft/protoc-gen-gorm/proto /go/src/g
 COPY --from=builder /go/src/github.com/tbonesoft/protoc-gen-gorm/third_party /go/src/github.com/tbonesoft/protoc-gen-gorm/third_party
 
 WORKDIR /go/src
+
+USER nobody
+
 ENTRYPOINT ["protoc", "-I.", \
     # required import paths for protoc-gen-openapiv2 plugin
     "-Igithub.com/infobloxopen/grpc-gateway", \

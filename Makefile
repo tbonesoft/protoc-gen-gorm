@@ -46,7 +46,7 @@ install:
 	go install -v .
 
 gentool:
-	docker build -f docker/Dockerfile -t $(GENTOOL_IMAGE) .
+	docker build -f Dockerfile -t $(GENTOOL_IMAGE) .
 	docker image prune -f --filter label=stage=server-intermediate
 
 generate-gentool: SRCROOT_ON_HOST      := $(shell dirname $(abspath $(lastword $(MAKEFILE_LIST))))

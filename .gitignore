@@ -20,3 +20,5 @@ trigger-travis.sh
 .idea
 
 /protoc-gen-gorm
+
+.DS_Store

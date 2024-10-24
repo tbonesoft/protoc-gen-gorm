@@ -6,8 +6,8 @@ import (
 	"os"
 	"path/filepath"
 
-	"github.com/infobloxopen/protoc-gen-gorm/internal/version"
-	"github.com/infobloxopen/protoc-gen-gorm/plugin"
+	"github.com/tbonesoft/protoc-gen-gorm/internal/version"
+	"github.com/tbonesoft/protoc-gen-gorm/plugin"
 	"google.golang.org/protobuf/compiler/protogen"
 	"google.golang.org/protobuf/proto"
 	"google.golang.org/protobuf/types/pluginpb"

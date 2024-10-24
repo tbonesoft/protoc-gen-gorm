@@ -31,4 +31,4 @@ require (
 	gorm.io/driver/mysql v1.3.2 // indirect
 )
 
-go 1.17
+go 1.22
